@@ -1,0 +1,139 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "new_base",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/v1/user"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "register user",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "full_name": {
+                                        "type": "string",
+                                        "example": "laksh"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "laksh@yopmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Admin@123"
+                                    },
+                                    "confirm_password": {
+                                        "type": "string",
+                                        "example": "Admin@123"
+                                    },
+                                    "device_type": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "fcm_token": {
+                                        "type": "string",
+                                        "example": "{{$randomUUID}}"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/verifyOtp": {
+            "post": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "user/verifyOtp",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    },
+                                    "otp": {
+                                        "type": "integer",
+                                        "example": "9172"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "General"
+                ],
+                "summary": "user/login",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "device_type": {
+                                        "type": "string"
+                                    },
+                                    "fcm_token": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
