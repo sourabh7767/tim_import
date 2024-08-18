@@ -192,26 +192,8 @@
     <!-- Author: FormBold Team -->
     <!-- Learn More: https://formbold.com -->
     <div class="formbold-form-wrapper">
-      <form action="https://formbold.com/s/FORM_ID" method="POST">
-        {{-- <div class="formbold-mb-5">
-          <label for="email" class="formbold-form-label">
-            Send files to this email:
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Enter your email"
-            class="formbold-form-input"
-          />
-        </div> --}}
-  
-        <div class="mb-6 pt-4">
-          <label class="formbold-form-label formbold-form-label-2">
-            upload
-          </label>
-  
-          <div class="formbold-mb-5 formbold-file-input">
+      <form action="#" method="POST">
+         <div class="formbold-mb-5 formbold-file-input">
             <input type="file" name="file" id="file" />
             <label for="file">
               <div>
@@ -226,8 +208,6 @@
               </div>
             </label>
           </div>
-        </div>
-  
         <div>
           <button class="formbold-btn w-full">Send File</button>
         </div>

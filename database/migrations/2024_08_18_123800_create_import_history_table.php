@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('import_history', function (Blueprint $table) {
             $table->id();
             $table->integer('import_id');
+            $table->integer('record_count')->nullable();
+            $table->tinyInteger('status')->comment("1=>pending, 2=>Complete, 3=>Faild")->default(1);
             $table->timestamps();
         });
     }

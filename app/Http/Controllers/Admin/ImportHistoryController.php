@@ -28,6 +28,9 @@ class ImportHistoryController extends Controller
             return datatables()
                     ->of($importHistories)
                     ->addIndexColumn()
+                    ->addColumn('status', function ($importHistory) {
+                        return $importHistory->getStatus();
+                    })
                     ->addColumn('created_at', function ($importHistory) {
                         return $importHistory->created_at;
                     })
@@ -95,6 +98,13 @@ class ImportHistoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        $id = decrypt($id);
+        $hasDelete = ImportHistory::find($id);
+        if($hasDelete){
+            $hasDelete->delete();
+            return response()->json(["statusCode" => 200,"message" => "Deleted!"]);
+            // return redirect()->back()->with("success",'Deleted');
+        }
     }
 }

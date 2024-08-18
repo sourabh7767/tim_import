@@ -46,13 +46,13 @@
             
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="usersTable" class="table table-bordered table-hover">
+                <table id="historyTable" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>S.No</th>
                     <th>Import Id</th>
-                    {{-- <th>Email</th>
-                     <th>Status</th> --}}
+                    {{-- <th>Email</th> --}}
+                     <th>Status</th>
                     <th>Created At</th>
                     <th data-orderable="false">Action</th>
                   </tr>

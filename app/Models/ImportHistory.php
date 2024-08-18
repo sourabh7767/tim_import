@@ -13,13 +13,24 @@ class ImportHistory extends Model
 
         $list = [
             0=>'id',
-            1=>'full_name',
-            2=>'email',
+            1=>'import_id',
+            2=>'record_count',
             3=>'status',
             4=>'created_at'
         ];
 
         return isset($list[$value])?$list[$value]:"";
+    }
+
+    public function getStatus(){
+
+        $list = [
+            1=>'Pending',
+            2=>'Complete',
+            3=>'Failed',
+        ];
+
+        return isset($list[$this->status])?$list[$this->status]:"";
     }
 
     public function getAllImports($request = null,$flag = false)
