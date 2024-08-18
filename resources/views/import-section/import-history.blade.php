@@ -51,8 +51,8 @@
                   <tr>
                     <th>S.No</th>
                     <th>Import Id</th>
-                    {{-- <th>Email</th> --}}
-                     <th>Status</th>
+                    <th>Status</th>
+                    <th>Record Count</th>
                     <th>Created At</th>
                     <th data-orderable="false">Action</th>
                   </tr>
