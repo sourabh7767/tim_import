@@ -25,12 +25,12 @@ Route::middleware('prevent-back-history')->group(function (){
     });
 
     Auth::routes();
-    Route::resource('history', 'Admin\ImportHistoryController');
+
     Route::middleware('auth')->group(function(){
 
         Route::get('/', 'HomeController@index')->name('user.home');
         Route::resource('import', 'Admin\ImportController');
-        
+        Route::resource('history', 'Admin\ImportHistoryController');
         Route::resource('users', 'Admin\UserController');
         Route::resource('role', 'Admin\RoleController');
         Route::get('/user/changeStatus/{id}','Admin\UserController@changeStatus')->name('user.changeStatus');
