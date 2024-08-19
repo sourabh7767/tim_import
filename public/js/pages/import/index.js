@@ -12,6 +12,7 @@ $(document).ready(function() {
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
             { data: 'import_id', name: 'import_id' },
             { data: 'status', name: 'status' },
+            { data: 'record_count', name: 'record_count' },
             { data: 'created_at', name: 'created_at'},
             { data: 'action', name: 'action', orderable: false, searchable: false},
         ],
