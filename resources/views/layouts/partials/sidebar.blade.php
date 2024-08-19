@@ -17,18 +17,24 @@
             <li class=" nav-item {{request()->is('/') || request()->is('production')|| request()->is('cutting')?'active':''}}">
                 <a class="d-flex align-items-center" href="{{ route('user.home') }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a>
             </li>
+            <li class=" nav-item {{request()->is('import') || request()->is('import/*')?'active':''}}">
+                <a class="d-flex align-items-center" href="{{route('import.index')}}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Users">Import</span></a>
+            </li>
+            <li class=" nav-item {{request()->is('history') || request()->is('history/*')?'active':''}}">
+                <a class="d-flex align-items-center" href="{{route('history.index')}}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Users">Import History</span></a>
+            </li>
 
-                <li class=" nav-item {{request()->is('users') || request()->is('users/*')?'active':''}}">
+                {{-- <li class=" nav-item {{request()->is('users') || request()->is('users/*')?'active':''}}">
                     <a class="d-flex align-items-center" href="{{route('users.index')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Users">Users</span></a>
-                </li>
+                </li> --}}
 
               <!--   <li class=" nav-item {{request()->is('role') || request()->is('role/*')?'active':''}}">
                     <a class="d-flex align-items-center" href="{{route('role.index')}}"><i data-feather="grid"></i><span class="menu-title text-truncate" data-i18n="Kanban">Roles</span></a>
                 </li> -->
 
-                <li class=" nav-item {{request()->is('page') || request()->is('page/*')?'active':''}}">
+                {{-- <li class=" nav-item {{request()->is('page') || request()->is('page/*')?'active':''}}">
                     <a class="d-flex align-items-center" href="{{route('page.index')}}"><i data-feather="file"></i><span class="menu-title text-truncate" data-i18n="Page">Pages</span></a>
-                </li>
+                </li> --}}
         </ul>
     </div>
 </div>
