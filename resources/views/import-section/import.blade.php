@@ -2,224 +2,145 @@
 
 @section('title')Users @endsection
 <style>
-      * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: "Inter", sans-serif;
-  }
-  .formbold-mb-5 {
-    margin-bottom: 20px;
-  }
-  .formbold-pt-3 {
-    padding-top: 12px;
-  }
-  .formbold-main-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-  }
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-  .formbold-form-wrapper {
-    margin: 0 auto;
-    max-width: 550px;
-    width: 100%;
-    background: white;
-  }
-  .formbold-form-label {
-    display: block;
-    font-weight: 500;
-    font-size: 16px;
-    color: #07074d;
-    margin-bottom: 12px;
-  }
-  .formbold-form-label-2 {
-    font-weight: 600;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+} */
 
-  .formbold-form-input {
-    width: 100%;
-    padding: 12px 24px;
-    border-radius: 6px;
-    border: 1px solid #e0e0e0;
-    background: white;
-    font-weight: 500;
-    font-size: 16px;
-    color: #6b7280;
-    outline: none;
-    resize: none;
-  }
-  .formbold-form-input:focus {
-    border-color: #6a64f1;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-  }
+.container {
+  /* height: 100vh; */
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #fcfcfc;
+}
 
-  .formbold-btn {
-    text-align: center;
-    font-size: 16px;
-    border-radius: 6px;
-    padding: 14px 32px;
-    border: none;
-    font-weight: 600;
-    background-color: #6a64f1;
-    color: white;
-    cursor: pointer;
-  }
-  .formbold-btn:hover {
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
-  }
+.card {
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+  width: 600px;
+  height: 260px;
+  background-color: #ffffff;
+  padding: 10px 30px 40px;
+}
 
-  .formbold--mx-3 {
-    margin-left: -12px;
-    margin-right: -12px;
-  }
-  .formbold-px-3 {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  .flex {
-    display: flex;
-  }
-  .flex-wrap {
-    flex-wrap: wrap;
-  }
-  .w-full {
-    width: 100%;
-  }
+.card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  
+}
 
-  .formbold-file-input input {
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
+.drop_box {
+  margin: 10px 0;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 3px dotted #a3a3a3;
+  border-radius: 5px;
+}
 
-  .formbold-file-input label {
-    position: relative;
-    border: 1px dashed #e0e0e0;
-    border-radius: 6px;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-    text-align: center;
-  }
-  .formbold-drop-file {
-    display: block;
-    font-weight: 600;
-    color: #07074d;
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
+.drop_box h4 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2e2e2e;
+}
 
-  .formbold-or {
-    font-weight: 500;
-    font-size: 16px;
-    color: #6b7280;
-    display: block;
-    margin-bottom: 8px;
-  }
-  .formbold-browse {
-    font-weight: 500;
-    font-size: 16px;
-    color: #07074d;
-    display: inline-block;
-    padding: 8px 28px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-  }
+.drop_box p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #a3a3a3;
+}
 
-  .formbold-file-list {
-    border-radius: 6px;
-    background: #f5f7fb;
-    padding: 16px 32px;
-  }
+.btn {
+  text-decoration: none;
+  background-color: #005af0;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
 
-  .formbold-file-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .formbold-file-item button {
-    color: #07074d;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-  }
-
-  .formbold-file-name {
-    font-weight: 500;
-    font-size: 16px;
-    color: #07074d;
-    padding-right: 12px;
-  }
-  .formbold-progress-bar {
-    margin-top: 20px;
-    position: relative;
-    width: 100%;
-    height: 6px;
-    border-radius: 8px;
-    background: #e2e5ef;
-  }
-
-  .formbold-progress {
-    position: absolute;
-    width: 75%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: #6a64f1;
-    border-radius: 8px;
-  }
-
-  @media (min-width: 540px) {
-    .sm\:w-half {
-      width: 50%;
-    }
-  }
+.btn:hover{
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #005af0;
+  padding: 10px 20px;
+  border: none;
+  outline: 1px solid #010101;
+}
+.form input {
+  margin: 10px 0;
+  width: 100%;
+  background-color: #e2e2e2;
+  border: none;
+  outline: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
 
 </style>
 @section('content')
- 
-<div class="formbold-main-wrapper">
-    <!-- Author: FormBold Team -->
-    <!-- Learn More: https://formbold.com -->
-    <div class="formbold-form-wrapper">
-      <form action="#" method="POST">
-         <div class="formbold-mb-5 formbold-file-input">
-            <input type="file" name="file" id="file" />
-            <label for="file">
-              <div>
-                <span class="formbold-drop-file"> Upload json files here </span>
-                <span class="formbold-or"> Or </span>
-                <span class="formbold-browse"> Browse </span>
-              </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <div>
-                <span class="formbold-drop-file"> Upload Xlsx files here </span>
-                <span class="formbold-or"> Or </span>
-                <span class="formbold-browse"> Browse </span>
-              </div>
-            </label>
-          </div>
-        <div>
-          <button class="formbold-btn w-full">Send File</button>
-        </div>
-      </form>
+<form action="{{route("import.store")}}" method="post" enctype="multipart/form-data">
+  @csrf
+  json:=><input type="file" name="jsonFile" id="">
+  xlsx:=><input type="file" name="xlsxFile" id="">
+  <button type="submit">Submit</button>
+</form>
+{{-- <form action="{{route("import.store")}}" method="post" enctype="multipart/form-data">
+  <div class="container display-flex">
+    <div class="card">
+      <h3>Upload Json file</h3>
+      <div class="drop_box">
+        <header>
+          <h4>Select File here</h4>
+        </header>
+        <p>Files Supported: JSON</p>
+        <input type="file" hidden name="json" id="fileID">
+        <button type="button" class="btn" id="jsonButton">Choose File</button>
+      </div>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="card">
+      <h3>Upload Xlsx File</h3>
+      <div class="drop_box">
+        <header>
+          <h4>Select File here</h4>
+        </header>
+        <p>Files Supported: XLSX</p>
+        <input type="file" hidden name="xlsx" id="fileID2">
+        <button class="btn" id="xlsxButton">Choose File</button>
+      </div>
     </div>
+      <button class="btn" type="submit">submit</button>
   </div>
+</form> --}}
   @push('page_script')
 
       @include('include.dataTableScripts')   
 
       <script src="{{ asset('js/pages/users/index.js') }}"></script>
-
+  <script>
+    
+  //   var xlsxButton = $("#xlsxButton");
+  //   var jsonButton = $("#jsonButton");
+  //   var xlsx = $("#xlsx");
+  //   var json = $("#json");
+  //   jsonButton.onclick = () => {
+  //     json.click();
+  // };
+  // xlsxButton.onclick = () => {
+  //   xlsx.click();
+  // };
+  </script>
   @endpush
 
 	     
