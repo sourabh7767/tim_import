@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')Users @endsection
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -87,15 +88,85 @@
   padding: 12px 20px;
   border-radius: 4px;
 }
-
+.fileForm {
+    width: 100%;
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    background: #fafafa;
+    -webkit-box-shadow: 0px 0px 18px 0px rgb(0 0 0 / 33%);
+    -moz-box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
+    /* box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75); */
+    /* min-height: 250px; */
+    padding: 20px;
+    border-radius: 10px
+}
+.inputBox {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0000004f;
+    border-radius: 5px;
+    z-index: 9999;
+    position: relative;
+    background: transparent
+}
+.submitBtn {
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background: linear-gradient(118deg, #7367f0, rgba(115, 103, 240, 0.7));
+    box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
+    color: #fff;
+    font-weight: 400;
+    border-radius: 4px;
+}
+.inputBox::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.form-group{
+  position: relative;
+}
+.attachIcon{
+  position: absolute;
+  top: 48px;
+  right: 10px;
+  z-index: 0;
+  background: transparent
+}
 </style>
 @section('content')
-<form action="{{route("import.store")}}" method="post" enctype="multipart/form-data">
-  @csrf
-  json:=><input type="file" name="jsonFile" id="">
-  xlsx:=><input type="file" name="xlsxFile" id="">
-  <button type="submit">Submit</button>
-</form>
+<div class="fileForm">
+  <form action="{{route("import.store")}}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group mb-2">
+          <label class="mb-1" for="">
+            json:
+          </label>
+          <input class="inputBox" type="file" name="jsonFile" id="">
+          <i class="fa-solid fa-paperclip fa-fw attachIcon"></i>
+        </div>
+       
+      </div>
+      <div class="col-12">
+        <div class="form-group mb-2">
+
+          <label  class="mb-1" for="">xlsx:</label>
+          <input class="inputBox" type="file" name="xlsxFile" id="">
+          <i class="fa-solid fa-paperclip fa-fw attachIcon"></i>
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="submitBtn" type="submit">Submit</button>
+      </div>
+    </div>
+   
+   
+   
+  </form>
+</div>
+
 {{-- <form action="{{route("import.store")}}" method="post" enctype="multipart/form-data">
   <div class="container display-flex">
     <div class="card">

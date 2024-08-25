@@ -102,5 +102,6 @@ class Door extends Model
         'door_compatible_mobile_home',
         'door_unspsc',
         'door_warrenty',
+        'import_id'
     ];
 }

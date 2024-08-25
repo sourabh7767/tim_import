@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ImportHistory extends Model
 {
     use HasFactory;
+    protected $guarded=[];
     protected $table = "import_history";
     public static function getColumnForSorting($value){
 

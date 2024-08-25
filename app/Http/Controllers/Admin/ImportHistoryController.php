@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Door;
 use App\Models\ImportHistory;
 use Illuminate\Http\Request;
 
@@ -100,6 +101,7 @@ class ImportHistoryController extends Controller
         $id = decrypt($id);
         $hasDelete = ImportHistory::find($id);
         if($hasDelete){
+            Door::where('import_id',$hasDelete->import_id)->delete();
             $hasDelete->delete();
             return response()->json(["statusCode" => 200,"message" => "Deleted!"]);
             // return redirect()->back()->with("success",'Deleted');
