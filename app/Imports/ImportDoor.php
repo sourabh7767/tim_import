@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 use App\Models\Door;
+use App\Models\ImportHistory;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -40,10 +41,13 @@ class ImportDoor implements ToModel
     }
 public function model(array $row)
 {
+    $recordCount = 0;
     if (self::$isFirstRow) {
         self::$isFirstRow = false;
         return null; 
     }
+    $importID = mt_rand(111111,999999);
+
     $keyCategoryIndex = $this->getColumnIndex($this->keyCategoryColumn);
     if (in_array($row[$keyCategoryIndex], $this->filters)) {
         $mappedData = [];
@@ -67,8 +71,20 @@ public function model(array $row)
                 $mappedData[$dbColumn] = $processedValue;
             }
         }
-
-        return new Door($mappedData);
+        $mappedData['import_id'] = $importID;
+        $door = Door::create($mappedData);
+        if ($door) {
+            $recordCount++;
+        }
+    
+        // Update the ImportHistory with the record count
+        ImportHistory::create([
+            'import_id' => $importID,
+            'record_count' => $recordCount,
+            'status' => 2
+        ]);
+    
+        return $door;
     }
 
     return null;

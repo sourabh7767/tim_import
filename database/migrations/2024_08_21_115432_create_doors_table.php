@@ -126,6 +126,7 @@ return new class extends Migration
             $table->boolean('door_compatible_mobile_home')->default(false);
             $table->string('door_unspsc', 50)->nullable();
             $table->text('door_warrenty')->nullable();
+            $table->integer('import_id')->nullable();
 
 
             // $table->id();
