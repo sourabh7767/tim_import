@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('windows', function (Blueprint $table) {
             $table->id();
+            $table->integer('import_id')->nullable();
             $table->string('sales_city', 255)->nullable();
             $table->string('sales_state', 255)->nullable();
             $table->string('sales_zipcode', 20)->nullable();
