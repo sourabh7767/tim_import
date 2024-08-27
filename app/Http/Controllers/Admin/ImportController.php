@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Imports\ImportDoor;
 use App\Models\Door;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -32,6 +34,14 @@ class ImportController extends Controller
      */
     public function store(Request $request)
     {
+        $rules = array(
+            'jsonFile' => 'required|mimes:json',
+            'xlsxFile' => 'required|mimes:xlsx',
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
 
         $jsonFile = $request->file('jsonFile');
         $xlsxFile = $request->file('xlsxFile');

@@ -73,6 +73,18 @@
                 <div class="content-body">
                     @include("include.flashMessage")
                     @yield('content')
+                    <div class="loader d-none loderGroup" >
+                        <div class="lds-roller">
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                          <div class="spinnerDot"></div>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>

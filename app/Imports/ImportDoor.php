@@ -7,6 +7,7 @@ ini_set('display_errors', 1);
 
 use App\Models\Door;
 use App\Models\ImportHistory;
+use App\Models\Window;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -22,6 +23,7 @@ class ImportDoor implements ToModel
     protected $filters;
     protected $headerToDbColumnMap = [];
     protected static $isFirstRow = true;
+    protected $table; 
 
 
     public function __construct($jsonFile)
@@ -30,6 +32,7 @@ class ImportDoor implements ToModel
 
         $this->keyCategoryColumn = $jsonData[0]['key_category_column'];
         $this->filters = $jsonData[0]['key_category_filter'];
+        $this->table = $jsonData[0]['key_category_type'];
 
         foreach ($jsonData[0]['fields'] as $field) {
             $this->headerToDbColumnMap[$field['db_column']] = [
@@ -48,11 +51,12 @@ public function model(array $row)
     }
     $importID = mt_rand(111111,999999);
 
+
     $keyCategoryIndex = $this->getColumnIndex($this->keyCategoryColumn);
     if (in_array($row[$keyCategoryIndex], $this->filters)) {
         $mappedData = [];
         
-        $columns = Schema::getColumnListing('doors');
+        $columns = Schema::getColumnListing($this->table);
         foreach ($this->headerToDbColumnMap as $dbColumn => $settings) {
             if (!in_array($dbColumn, $columns)) {
                 Log::info("Skipping column", ["Column" => $dbColumn, "Reason" => "Not in valid columns"]);
@@ -72,8 +76,12 @@ public function model(array $row)
             }
         }
         $mappedData['import_id'] = $importID;
-        $door = Door::create($mappedData);
-        if ($door) {
+        if($this->table == 'doors'){
+            $data = Door::create($mappedData);
+        }elseif($this->table == "windows"){
+            $data = Window::create($mappedData);
+        }
+        if ($data) {
             $recordCount++;
         }
     
@@ -84,7 +92,7 @@ public function model(array $row)
             'status' => 2
         ]);
     
-        return $door;
+        return $data;
     }
 
     return null;

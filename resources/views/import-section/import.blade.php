@@ -108,7 +108,7 @@
     border-radius: 5px;
     z-index: 9999;
     position: relative;
-    background: transparent
+    background: transparent,
 }
 .submitBtn {
     padding: 10px;
@@ -144,8 +144,13 @@
           <label class="mb-1" for="">
             json:
           </label>
-          <input class="inputBox" type="file" name="jsonFile" id="">
+          <input class="inputBox {{ $errors->has('jsonFile') ? ' is-invalid' : '' }}" type="file" name="jsonFile" id="">
           <i class="fa-solid fa-paperclip fa-fw attachIcon"></i>
+          @if ($errors->has('jsonFile'))
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('jsonFile') }}</strong>
+              </span>
+          @endif
         </div>
        
       </div>
@@ -153,12 +158,17 @@
         <div class="form-group mb-2">
 
           <label  class="mb-1" for="">xlsx:</label>
-          <input class="inputBox" type="file" name="xlsxFile" id="">
+          <input class="inputBox {{ $errors->has('xlsxFile') ? ' is-invalid' : '' }}" type="file" name="xlsxFile" id="">
           <i class="fa-solid fa-paperclip fa-fw attachIcon"></i>
+          @if ($errors->has('xlsxFile'))
+              <span class="invalid-feedback" role="alert">
+                  <strong>{{ $errors->first('xlsxFile') }}</strong>
+              </span>
+          @endif
         </div>
       </div>
       <div class="col-12">
-        <button class="submitBtn" type="submit">Submit</button>
+        <button class="submitBtn" type="submit" id="submitImport">Submit</button>
       </div>
     </div>
    
@@ -201,16 +211,12 @@
       <script src="{{ asset('js/pages/users/index.js') }}"></script>
   <script>
     
-  //   var xlsxButton = $("#xlsxButton");
-  //   var jsonButton = $("#jsonButton");
-  //   var xlsx = $("#xlsx");
-  //   var json = $("#json");
-  //   jsonButton.onclick = () => {
-  //     json.click();
-  // };
-  // xlsxButton.onclick = () => {
-  //   xlsx.click();
-  // };
+      $(document).on("click","#submitImport",function(){
+        // alert()
+        $(".loderGroup").removeClass("d-none");
+        const spanTags = document.querySelectorAll('form span');
+        spanTags.forEach(span => span.textContent = '');
+      });
   </script>
   @endpush
 
