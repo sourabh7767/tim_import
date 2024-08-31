@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Imports;
+use App\Models\Appliance;
 use Illuminate\Support\Facades\Log;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 use App\Models\Door;
+use App\Models\Generator;
 use App\Models\ImportHistory;
 use App\Models\Window;
 use Illuminate\Support\Collection;
@@ -80,6 +82,10 @@ public function model(array $row)
             $data = Door::create($mappedData);
         }elseif($this->table == "windows"){
             $data = Window::create($mappedData);
+        }elseif($this->table == "generators"){
+            $data = Generator::create($mappedData);
+        }elseif($this->table == "appliances"){
+            $data = Appliance::create($mappedData);
         }
         if ($data) {
             $recordCount++;
