@@ -26,10 +26,16 @@ class ImportDoor implements ToModel
     protected $headerToDbColumnMap = [];
     protected static $isFirstRow = true;
     protected $table; 
+    protected $jsonFileName;
+    protected $xlsxFileName;
+    protected $importID;
+    protected $totalRecordCount = 0;
 
 
-    public function __construct($jsonFile)
+    public function __construct($jsonFile,$jsonFileName,$xlsxFileName)
     {
+        $this->jsonFileName = $jsonFileName;
+        $this->xlsxFileName = $xlsxFileName;
         $jsonData = json_decode(file_get_contents($jsonFile), true);
 
         $this->keyCategoryColumn = $jsonData[0]['key_category_column'];
@@ -46,12 +52,12 @@ class ImportDoor implements ToModel
     }
 public function model(array $row)
 {
-    $recordCount = 0;
+    // $recordCount = 0;
     if (self::$isFirstRow) {
         self::$isFirstRow = false;
         return null; 
     }
-    $importID = mt_rand(111111,999999);
+    $this->importID = mt_rand(111111,999999);
 
 
     $keyCategoryIndex = $this->getColumnIndex($this->keyCategoryColumn);
@@ -77,7 +83,7 @@ public function model(array $row)
                 $mappedData[$dbColumn] = $processedValue;
             }
         }
-        $mappedData['import_id'] = $importID;
+        $mappedData['import_id'] = $this->importID;
         if($this->table == 'doors'){
             $data = Door::create($mappedData);
         }elseif($this->table == "windows"){
@@ -88,21 +94,25 @@ public function model(array $row)
             $data = Appliance::create($mappedData);
         }
         if ($data) {
-            $recordCount++;
+            $this->totalRecordCount++;
         }
-    
-        // Update the ImportHistory with the record count
-        ImportHistory::create([
-            'import_id' => $importID,
-            'record_count' => $recordCount,
-            'status' => 2
-        ]);
-    
+       
         return $data;
     }
 
     return null;
 }
+public function __destruct()
+    {
+        ImportHistory::create([
+            'import_id' => $this->importID,
+            'record_count' => $this->totalRecordCount,
+            'json_file' => $this->jsonFileName,
+            'xlsx_file' => $this->xlsxFileName,
+            'status' => 2,
+        ]);
+    }
+
 private function getColumnIndex($columnLetter)
     {
         $columnLetter = strtoupper($columnLetter);

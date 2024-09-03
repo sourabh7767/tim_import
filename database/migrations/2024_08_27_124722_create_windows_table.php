@@ -140,6 +140,7 @@ return new class extends Migration
             $table->boolean('window_compatible_mobile_home')->nullable();
             $table->string('window_unspsc', 50)->nullable();
             $table->text('window_warrenty')->nullable();
+            $table->date('source_date')->nullable();
 
             // Timestamps
             $table->timestamps();

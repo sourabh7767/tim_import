@@ -90,6 +90,8 @@ return new class extends Migration
             $table->float('appliance_sound_level')->nullable();
             $table->boolean('appliance_sensor_wash_cycle')->nullable();
             $table->boolean('appliance_quick_rinse')->nullable();
+            $table->date('source_date')->nullable();
+            $table->integer('import_id')->nullable();
             $table->timestamps();
         });
     }

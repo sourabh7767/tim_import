@@ -45,7 +45,6 @@ return new class extends Migration
             $table->string('generator_warranty', 255)->nullable();
             $table->string('generator_lowes_exclusive', 255)->nullable();
             $table->string('generator_prop_65', 255)->nullable();
-            $table->string('generator_carb_comply', 255)->nullable();
             $table->integer('generator_protected_circuits')->nullable();
             $table->float('generator_base_warranty_labor')->nullable();
             $table->boolean('generator_base_warranty_parts')->nullable();
@@ -74,7 +73,6 @@ return new class extends Migration
             $table->boolean('generator_fuel_gauge')->nullable();
             $table->boolean('generator_fuel_tech')->nullable();
             $table->float('generator_normal_operating_load')->nullable();
-            $table->float('generator_noise_level')->nullable();
 
             // Features
             $table->string('generator_use_location', 255)->nullable();
@@ -126,6 +124,8 @@ return new class extends Migration
             $table->string('generator_safety_listing', 255)->nullable();
             $table->string('generator_carb_comply', 255)->nullable();
             $table->boolean('generator_carbon_monoxide_sensor')->nullable();
+            $table->date('source_date')->nullable();
+            $table->integer('import_id')->nullable();
             $table->timestamps();
         });
     }
