@@ -107,8 +107,8 @@ return new class extends Migration
             $table->boolean('door_3pt_lck')->default(false);
             $table->boolean('door_fire_rated')->default(false);
             $table->string('door_fire_rating', 255)->nullable();
-            $table->boolean('door_impact_resist_glass')->default(false);
-            $table->boolean('door_impact_resist')->default(false);
+            $table->string('door_impact_resist_glass',200)->nullable();
+            $table->string('door_impact_resist',200)->nullable();
             $table->decimal('door_privacy_rating', 10, 2)->nullable();
             $table->string('door_commercial_residential', 255)->nullable();
             $table->boolean('door_brickmould_incld')->default(false);
@@ -123,7 +123,7 @@ return new class extends Migration
             $table->text('door_prop_65')->nullable();
 
             // Compliance and Certifications
-            $table->boolean('door_compatible_mobile_home')->default(false);
+            $table->string('door_compatible_mobile_home',200)->nullable();
             $table->string('door_unspsc', 50)->nullable();
             $table->text('door_warrenty')->nullable();
             $table->integer('import_id')->nullable();
