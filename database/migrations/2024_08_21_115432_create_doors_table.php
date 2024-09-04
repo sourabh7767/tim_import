@@ -127,6 +127,7 @@ return new class extends Migration
             $table->string('door_unspsc', 50)->nullable();
             $table->text('door_warrenty')->nullable();
             $table->integer('import_id')->nullable();
+            $table->date('source_date')->nullable();
 
 
             // $table->id();

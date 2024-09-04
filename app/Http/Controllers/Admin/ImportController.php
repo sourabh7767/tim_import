@@ -45,7 +45,9 @@ class ImportController extends Controller
 
         $jsonFile = $request->file('jsonFile');
         $xlsxFile = $request->file('xlsxFile');
-        Excel::import(new ImportDoor($jsonFile), $xlsxFile);
+        $jsonFileName = $jsonFile->getClientOriginalName();
+        $xlsxFileName = $xlsxFile->getClientOriginalName();
+        Excel::import(new ImportDoor($jsonFile,$jsonFileName,$xlsxFileName), $xlsxFile);
 
         // Read and decode JSON file
         // $jsonData = json_decode(file_get_contents($jsonFile), true);
