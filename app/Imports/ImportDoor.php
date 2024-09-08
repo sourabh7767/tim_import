@@ -3,8 +3,8 @@
 namespace App\Imports;
 use App\Models\Appliance;
 use Illuminate\Support\Facades\Log;
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 use App\Models\Door;
 use App\Models\Generator;
@@ -12,10 +12,12 @@ use App\Models\ImportHistory;
 use App\Models\Window;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 
-class ImportDoor implements ToModel
+class ImportDoor implements ToModel, WithChunkReading
+
 {
     /**
     * @param Collection $collection
@@ -124,5 +126,10 @@ private function getColumnIndex($columnLetter)
         }
 
         return $index;
+    }
+
+    public function chunkSize(): int
+    {
+        return 500; 
     }
 }
