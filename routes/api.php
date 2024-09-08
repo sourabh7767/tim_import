@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ImportController;
+use App\Http\Controllers\Api\ImportController as ApiImportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +45,7 @@ Route::prefix('v1')->namespace('Api')->group(function () {
 		
 		});
     });
+	Route::post('import-data',[ApiImportController::class,'store']);
 
 
 });
