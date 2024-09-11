@@ -38,7 +38,7 @@ class ImportController extends Controller
             'jsonFile' => 'required|mimes:json',
             'xlsxFile' => 'required|mimes:xlsx',
         );
-        $validator = Validator::make($request->all(), $rules);
+    $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return Redirect::back()->withInput()->withErrors($validator);
         }
@@ -47,7 +47,8 @@ class ImportController extends Controller
         $xlsxFile = $request->file('xlsxFile');
         $jsonFileName = $jsonFile->getClientOriginalName();
         $xlsxFileName = $xlsxFile->getClientOriginalName();
-        Excel::import(new ImportDoor($jsonFile,$jsonFileName,$xlsxFileName), $xlsxFile);
+        $type = Admin;
+        Excel::import(new ImportDoor($jsonFile,$jsonFileName,$xlsxFileName,$type), $xlsxFile);
 
         // Read and decode JSON file
         // $jsonData = json_decode(file_get_contents($jsonFile), true);

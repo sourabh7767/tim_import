@@ -10,6 +10,8 @@ const RECORD_PER_PAGE = 10;
 const MANAGE_USERS = 1;
 const MANAGE_CUSTOMERS = 2;
 const MANAGE_ROLES = 3;
+const Mobile = 1;
+const Admin = 2;
 
 function generateBarcode($info){
     $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();

@@ -32,6 +32,9 @@ class ImportHistoryController extends Controller
                     ->addColumn('status', function ($importHistory) {
                         return $importHistory->getStatus();
                     })
+                    ->addColumn('type', function ($importHistory) {
+                        return $importHistory->getType();
+                    })
                     ->addColumn('created_at', function ($importHistory) {
                         return $importHistory->created_at;
                     })

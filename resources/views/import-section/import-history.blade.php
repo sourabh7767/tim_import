@@ -55,7 +55,7 @@
                     <th>Record Count</th>
                     <th>Template Name</th>
                     <th>Xlsx File</th>
-                    {{-- <th>Source Date</th> --}}
+                    <th>Import-Type</th>
                     <th>Created At</th>
                     <th data-orderable="false">Action</th>
                   </tr>

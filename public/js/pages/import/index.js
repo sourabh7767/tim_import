@@ -15,7 +15,7 @@ $(document).ready(function() {
             { data: 'record_count', name: 'record_count' },
             { data: 'json_file', name: 'json_file' },
             { data: 'xlsx_file', name: 'xlsx_file' },
-            // { data: 'source_date', name: 'source_date' },
+            { data: 'type', name: 'type' },
             { data: 'created_at', name: 'created_at'},
             { data: 'action', name: 'action', orderable: false, searchable: false},
         ],

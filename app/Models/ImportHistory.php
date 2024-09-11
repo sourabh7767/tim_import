@@ -33,6 +33,9 @@ class ImportHistory extends Model
 
         return isset($list[$this->status])?$list[$this->status]:"";
     }
+    public function getType(){
+        return $this->type == Admin ? "Admin" : "Mobile";
+    }
 
     public function getAllImports($request = null,$flag = false)
     {

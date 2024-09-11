@@ -32,10 +32,13 @@ class ImportDoor implements ToModel, WithChunkReading
     protected $xlsxFileName;
     protected $importID;
     protected $totalRecordCount = 0;
+    protected $type;
 
 
-    public function __construct($jsonFile,$jsonFileName,$xlsxFileName)
+    public function __construct($jsonFile,$jsonFileName,$xlsxFileName,$type)
     {
+        $this->type = $type;
+        $this->importID = mt_rand(111111,999999);
         $this->jsonFileName = $jsonFileName;
         $this->xlsxFileName = $xlsxFileName;
         $jsonData = json_decode(file_get_contents($jsonFile), true);
@@ -59,9 +62,7 @@ public function model(array $row)
         self::$isFirstRow = false;
         return null; 
     }
-    $this->importID = mt_rand(111111,999999);
-
-
+    
     $keyCategoryIndex = $this->getColumnIndex($this->keyCategoryColumn);
     if (in_array($row[$keyCategoryIndex], $this->filters)) {
         $mappedData = [];
@@ -112,6 +113,7 @@ public function __destruct()
             'json_file' => $this->jsonFileName,
             'xlsx_file' => $this->xlsxFileName,
             'status' => 2,
+            'type' => $this->type
         ]);
     }
 
@@ -130,6 +132,6 @@ private function getColumnIndex($columnLetter)
 
     public function chunkSize(): int
     {
-        return 500; 
+        return 200; 
     }
 }

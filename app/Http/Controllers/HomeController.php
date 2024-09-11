@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\ImportHistory;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,7 @@ class HomeController extends Controller
         $usersMonthlyData = json_encode($monthlyData['users']);
         $categories = json_encode($monthlyData['month']);
         $userPieChartData = User::getActiveInactiveCount();
-        return view('home',compact("users","usersMonthlyData","categories","userPieChartData"));
+        $importCount = ImportHistory::count();
+        return view('home',compact("users","usersMonthlyData","categories","userPieChartData","importCount"));
     }
 }

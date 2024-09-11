@@ -25,12 +25,16 @@ class ImportController extends Controller
             $errorMessages = $validator->errors()->all();
             throw new HttpResponseException(returnValidationErrorResponse($errorMessages[0]));
         }
+        if($request->token != "8fb6b925c2cd66c65e7979480d7aa3cb"){
+            return returnErrorResponse("Token is miss matched!");
+        }
 
         $jsonFile = $request->file('jsonFile');
         $xlsxFile = $request->file('xlsxFile');
         $jsonFileName = $jsonFile->getClientOriginalName();
         $xlsxFileName = $xlsxFile->getClientOriginalName();
-        Excel::import(new ImportDoor($jsonFile,$jsonFileName,$xlsxFileName), $xlsxFile);
+        $type = Mobile;
+        Excel::import(new ImportDoor($jsonFile,$jsonFileName,$xlsxFileName,$type), $xlsxFile);
         return returnSuccessResponse("Data processed and inserted successfully");
     }
 }
