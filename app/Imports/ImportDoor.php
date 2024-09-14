@@ -132,6 +132,6 @@ private function getColumnIndex($columnLetter)
 
     public function chunkSize(): int
     {
-        return 300; 
+        return 1500; 
     }
 }
