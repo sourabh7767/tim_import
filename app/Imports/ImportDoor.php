@@ -70,7 +70,7 @@ public function model(array $row)
         $columns = Schema::getColumnListing($this->table);
         foreach ($this->headerToDbColumnMap as $dbColumn => $settings) {
             if (!in_array($dbColumn, $columns)) {
-                Log::info("Skipping column", ["Column" => $dbColumn, "Reason" => "Not in valid columns"]);
+                // Log::info("Skipping column", ["Column" => $dbColumn, "Reason" => "Not in valid columns"]);
                 continue; 
             }
 
