@@ -26,12 +26,12 @@ Route::middleware('prevent-back-history')->group(function (){
 
     Auth::routes();
 
-    Route::resource('import', 'Admin\ImportController');
+    
+    Route::middleware('auth')->group(function(){
+        Route::resource('import', 'Admin\ImportController');
     Route::resource('history', 'Admin\ImportHistoryController'); 
         
     Route::get('/', 'HomeController@index')->name('user.home');
-    Route::middleware('auth')->group(function(){
-
         
         Route::resource('users', 'Admin\UserController');
         Route::resource('role', 'Admin\RoleController');
